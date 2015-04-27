@@ -1,14 +1,15 @@
-var apikey = '874568ad8c8402451210db15f2439a3771783d9f';//'YOUR-API-KEY'; // Put your API key here
+var apikey = 'YOUR-API-KEY'; // Put your API key here
 
-// Use this function to do stuff with your results.
+// Use this function to do stuff with your results. 
+// It is called after 'search' is executed.
 function searchCallback(results) {
     console.log(results);
 }
 
 $(document).ready(function() {
 
-	// Start the program here!
-
+	// Start the search here!
+	search('batman');
 });
 
 // HELPER FUNCTION
