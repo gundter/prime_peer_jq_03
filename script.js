@@ -12,14 +12,23 @@ function searchCallback(results) {
 		platforms = platforms.slice(0,platforms.length-2);
 		var releaseDate = new Date (results[i].original_release_date).toLocaleDateString();
 		console.log(platforms);
-		$('.container').append("<div class='col-md-4'><h3>" + results[i].name + "</h3><img src='" + results[i].image.icon_url + "'><div class='result'>" + results[i].deck + "<br> <strong>Release date:</strong> " + releaseDate +"<br> <strong>Platforms:</strong> "+ platforms + "</div> </div>");
+		$('.container').append("<div class='col-md-4 info'><h3>" + results[i].name + "</h3><img src='" + results[i].image.icon_url + "'><div class='result'>" + results[i].deck + "<br> <strong>Release date:</strong> " + releaseDate +"<br> <strong>Platforms:</strong> "+ platforms + "</div> </div>");
 	}
+	$('.info').on('click', function(){
+		console.log("Click is working");
+		$('.result').hide();
+		$(this).children('.result').show();
+
+	});
 }
 
 $(document).ready(function() {
 
+
+
 	// Start the search here!
 	search('batman');
+
 
 
 });
