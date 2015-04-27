@@ -1,0 +1,11 @@
+img {
+    float: left;
+    margin: 10px;
+}
+
+.result {
+    display:none;
+}
+h3 {
+    font-size: 14px;
+}
