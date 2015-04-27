@@ -12,7 +12,7 @@ Welcome back!
 
 You and your peer will be tackling a bit of jQuery and Front End using Bootstrap.
 
-You are going to create an application that allows users to search for video games, and display the result's image and title inside of a `div` (one `div` per result). The display of results using Bootstrap allows you to create a grid system quickly. The `index.html` already has links to Bootstrap's style sheets and JavaScript files, so you shouldn't need to get them.
+You are going to create an application that allows users to search for video games, and display the result's image and title inside of a `div` (one `div` per result). The display of results using Bootstrap allows you to create a grid system quickly. 
 
 In addition to this functionality, clicking a result's `div` should expand the `div` it is inside of to show all useful information (at minimum include the description, release date & platform), using jQuery's `on` function.
 
