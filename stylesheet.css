@@ -3,9 +3,19 @@ img {
     margin: 10px;
 }
 
+.btn {
+    background-color: mediumaquamarine;
+}
+
+.container {
+    text-align: center;
+}
+
 .result {
+    text-align: left;
     display:none;
 }
 h3 {
+    text-align: left;
     font-size: 14px;
 }

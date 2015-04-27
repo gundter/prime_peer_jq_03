@@ -15,10 +15,16 @@
 </head>
 
 <body>
-	<div class="container-fluid">
-		<div class="col-md-12"></div>
-
-	</div>
+	<form id="enteredSearch">
+		<input type="text" placeholder="Search" id="searchTerm">
+		<div class="submit btn">Submit</div>
+	</form>
+		<div class="col-md-12"> Sort results: </div>
+		<div class="col-md-4 btn" id="alphaBtn">Alphabetical</div>
+		<div class="col-md-4 btn" id="releaseBtn">Release date</div>
+		<div class="col-md-4 btn" id ="platformBtn">Platform</div>
+		<div class="container">
+		</div>
 
 	<!-- SCRIPTS -->
 	<script src="jquery.min.js"></script>
