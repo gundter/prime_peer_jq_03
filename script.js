@@ -1,10 +1,12 @@
 var apikey = '728618f4cc37c292e2a09339bb33711dd540ddbd'; // Put your API key here
 var searchMethod;
+var searchTerm;
 // Use this function to do stuff with your results. 
 // It is called after 'search' is executed.
 function searchCallback(results) {
-    console.log(results);
-	//results = sortResults(results);
+    console.log("Results from server: ", results);
+	results = sortResults(results);
+	console.log("Sorted results: ", results);
 	for(var i = 0; i < results.length; i++) {
 		var platforms = "";
 		if (results[i].platforms) {
@@ -23,56 +25,99 @@ function searchCallback(results) {
 		if (results[i].image){
 			var image_url = results[i].image.icon_url;
 		}
-		console.log(platforms);
-
 		$('.row').last().append("<div class='col-md-4 info'><h3>" + results[i].name + "</h3><img src='"+ image_url + "'><div class='result'>" + description + "<br> <strong>Release date:</strong> " + releaseDate +"<br> <strong>Platforms:</strong> "+ platforms + "</div> </div>");
 		if (i % 3 == 0){
 			$('.container').append("<div class='row'></div>");
 		}
 	}
 	$('.info').on('click', function(){
-		console.log("Click is working");
 		$('.result').hide();
 		$(this).children('.result').show();
 
 	});
 }
 
-// sort results array given a globally defined sort method keyword
-//function sortResults(results){
-//	if (searchMethod == "alpha"){
-//		results = results.sort(alphasort);
-//			for (var k =0; k<results.length; k++){
-//			console.log(results[k].name);}
-//		}
-//	}
-//
-//
-//function alphaSort(a, b) {
-//	if (a.name < b.name) {
-//		return -1;
-//	}
-//	if (a.name > b.name) {
-//		return 1;
-//	}
-//	return 0;
-//}
+//sort results array given a globally defined sort method keyword
+function sortResults(results) {
+	console.log("searchMethod is " + searchMethod);
+	switch (searchMethod) {
+		case "alpha":
+			results = results.sort(alphaSort);
+			console.log("Exiting alpha sort");
+			break;
+		case "release":
+			results = results.sort(releaseSort);
+			console.log("Exiting release sort");
+			break;
+		case "platform":
+			results = results.sort(platformSort);
+			console.log("Exiting platformSort");
+			break;
+	}
+	return results;
+}
+
+
+function alphaSort(a, b) {
+	if (a.name < b.name) {
+		return -1;
+	}
+	if (a.name > b.name) {
+		return 1;
+	}
+	return 0;
+}
+
+function releaseSort(a,b){
+	console.log("Entered release sort!")
+	if (a.original_release_date < b.original_release_date) {
+		console.log(a.original_release_date+" is greater than "+b.original_release_date);
+		return -1;
+	}
+	if (a.original_release_date > b.original_release_date){
+		console.log(a.original_release_date+" is less than "+b.original_release_date);
+		return 1;
+	}
+	return 0;
+}
 
 $(document).ready(function() {
 
 	$(".submit").on('click', function(){
 		$(".container").empty();
-		var searchTerm = $("#searchTerm").val();
+		searchTerm = $("#searchTerm").val();
 		console.log(searchTerm);
 		$("#searchTerm").val('');
 		search(searchTerm);
 	});
 
-	//$(".btn").on(click, "#alphaBtn", function(){
-	//	$(".container").empty();
-	//	searchMethod = "alpha";
-	//	search('batman');
-	//})
+	$("#alphaBtn").on('click', function(){
+		if (searchTerm){
+			console.log(searchTerm);
+			$(".container").empty();
+			searchMethod = "alpha";
+			console.log("Set search method to "+searchMethod);
+			search(searchTerm);
+		} else {
+			alert("Please enter a search!");
+		}
+
+
+	});
+
+	$("#releaseBtn").on('click', function(){
+		if (searchTerm){
+			console.log(searchTerm);
+			$(".container").empty();
+			searchMethod = "release";
+			console.log("Set search method to"+searchMethod);
+			search(searchTerm);
+		} else {
+			alert("Please enter a search!");
+		}
+
+
+	})
 
 
 });
