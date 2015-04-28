@@ -4,7 +4,7 @@ img {
 }
 
 .btn {
-    background-color: mediumaquamarine;
+    background-color: #208075;
 }
 
 .container {
@@ -18,4 +18,12 @@ img {
 h3 {
     text-align: left;
     font-size: 14px;
+}
+.info {
+    padding: 10px 0px 20px 10px;
+}
+.row:nth-child(even){
+    background-color: #208075;
+    color: white;
+
 }

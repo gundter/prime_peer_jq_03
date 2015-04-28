@@ -7,16 +7,25 @@ function searchCallback(results) {
 	//results = sortResults(results);
 	for(var i = 0; i < results.length; i++) {
 		var platforms = "";
-		for(var j = 0; j < results[i].platforms.length; j++){
-			platforms += results[i].platforms[j].name + ", ";
+		if (results[i].platforms) {
+			for (var j = 0; j < results[i].platforms.length; j++) {
+				platforms += results[i].platforms[j].name + ", ";
+			}
+			platforms = platforms.slice(0, platforms.length - 2);
 		}
-		platforms = platforms.slice(0,platforms.length-2);
-		var releaseDate = new Date (results[i].original_release_date).toLocaleDateString();
+		var description = "";
+		if (results[i].deck){
+			description = results[i].deck;
+		}
+		var releaseDate = "";
+		if (results[i].original_release_date){
+			releaseDate = new Date (results[i].original_release_date).toLocaleDateString();}
 		if (results[i].image){
 			var image_url = results[i].image.icon_url;
 		}
 		console.log(platforms);
-		$('.container').append("<div class='col-md-4 info'><h3>" + results[i].name + "</h3><img src='"+ image_url + "'><div class='result'>" + results[i].deck + "<br> <strong>Release date:</strong> " + releaseDate +"<br> <strong>Platforms:</strong> "+ platforms + "</div> </div>");
+
+		$('.row').last().append("<div class='col-md-4 info'><h3>" + results[i].name + "</h3><img src='"+ image_url + "'><div class='result'>" + description + "<br> <strong>Release date:</strong> " + releaseDate +"<br> <strong>Platforms:</strong> "+ platforms + "</div> </div>");
 		if (i % 3 == 0){
 			$('.container').append("<div class='row'></div>");
 		}
